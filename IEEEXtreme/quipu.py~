@@ -1,0 +1,16 @@
+import math
+
+def getAllPrimes(n):
+    array = [True] * (n + 1)
+    for i in range(2, int(math.sqrt(n) + 1)):
+        if array[i]:
+            for j in range(i**2, n + 1, i):
+                array[j] = False
+    output = []
+    for i in range(2, n + 1):
+        if array[i]:
+            output += [i]
+    return output
+
+t, a, b = [int(i) for i in input().split()]
+for i in range()

@@ -1,0 +1,46 @@
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+
+    def traverse(self, target):
+        if self is None:
+            return False
+        if self.val == target:
+            return True
+        else:
+            for child in self.children:
+                traverse(child, target)
+    
+    def isRelated(self, val1, val2):
+        if self.val == val1 or self.val == val2:
+            for child in self.children:
+                if child.val == val1 or child.val == val2:
+                    return True
+            return False
+        for child in self.children:
+            isRelated(child, val1, val2)
+        return False
+
+    def __str__(self):
+        return str(self.val)
+        
+map = Node(0)
+a = int(input())
+flag = False
+for i in range(a):
+    n, m = [int(i) for i in input().split()]
+    raw = [int(i) for i in input().split()]
+    x = raw[0::2]
+    fx = raw[1::2]
+    print (x)
+    print(fx)
+    for i, j in list(list(zip(x, fx))):
+        if i == j:
+            flag = True
+            break
+        else:
+            if traverse(i) and traverse(j):
+                if not isRelated(i, j):
+                    flag = True
+print(int(flag))
